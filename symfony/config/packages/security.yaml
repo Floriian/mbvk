@@ -16,10 +16,6 @@ security:
             custom_authenticators:
                 - App\Security\BearerTokenAuthenticator
 
-    access_control:
-        - { path: ^/api/auth/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: ROLE_USER }
-
 when@test:
     security:
         password_hashers:
