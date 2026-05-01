@@ -1,0 +1,84 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+      POSTGRES_HOST_AUTH_METHOD: trust
+      TZ: Europe/Budapest
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d auctions_legacy"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  legacy-go:
+    build: ./legacy-go
+    environment:
+      DATABASE_URL: postgres://app:app@postgres:5432/auctions_legacy?sslmode=disable
+      REDIS_ADDR: redis:6379
+      LISTEN_ADDR: ":8080"
+      TZ: Europe/Budapest
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Egyszer lefut, importálja a 10 minta XML-t a legacy-go szervizbe, ami számmal kezdődik, kérlek symfony esetén az invalid xml-re is fusson rá, és hagyja ki
+  # (auctions_legacy DB), majd kilép. A Symfony oldali auctions DB
+  # ettől üresen marad - oda a jelölt importál.
+  loader:
+    image: curlimages/curl:8.10.1
+    depends_on:
+      legacy-go:
+        condition: service_started
+    volumes:
+      - ./seed-data:/seed-data:ro
+    environment:
+      TARGET: http://legacy-go:8080
+    entrypoint: ["sh", "/seed-data/load.sh"]
+    restart: "no"
+
+  # ----------------------------------------------------------------
+  # A ide jönnek a saját serviceid:
+  #
+  #   symfony:
+  #     build: ./symfony
+  #     environment:
+  #       DATABASE_URL: postgres://app:app@postgres:5432/auctions?sslmode=disable
+  #       REDIS_DSN: redis://redis:6379
+  #     ports: ["8090:8080"]   # vagy ahova teszi a built-in szervert / nginx-et
+  #     depends_on: { postgres: ..., redis: ... }
+  #
+  #   frontend:
+  #     build: ./frontend
+  #     ports: ["3000:3000"]
+  #     environment:
+  #       API_BASE: http://localhost:8090
+  #
+  # FIGYELEM: a Symfony az 'auctions' DB-t használja, NEM az
+  # 'auctions_legacy'-t! Az 'auctions_legacy' csak a Go-é, parity
+  # tesztre. Az 'auctions' üres sémával vár.
+  # ----------------------------------------------------------------
+
+volumes:
+  pgdata:

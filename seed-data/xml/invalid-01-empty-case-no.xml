@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hibás minta: hiányzó case_no. Elvárt válasz: 400. -->
+<auction>
+  <case_no></case_no>
+  <debtor>Kiss Béla</debtor>
+  <starts_at>2026-05-15T10:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Valami</title>
+      <min_price>1 000 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

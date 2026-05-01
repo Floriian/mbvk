@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hibás minta: nincs asset. Elvárt válasz: 400. -->
+<auction>
+  <case_no>0101-Vh-9999/2025</case_no>
+  <debtor>Teszt Elek</debtor>
+  <starts_at>2026-05-15T10:00:00+02:00</starts_at>
+  <assets></assets>
+</auction>

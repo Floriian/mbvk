@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0207-Vh-0923/2025</case_no>
+  <debtor>Ürögdi-Kovács Ágnes e.v.</debtor>
+  <starts_at>2026-06-17T11:30:00+02:00</starts_at>
+  <assets>
+    <asset category="ingóság">
+      <title>Mercedes-Benz Vito 116 CDI (2019)</title>
+      <description>9 személyes kivitel, 145 000 km, klímás, tempomat.</description>
+      <min_price>8 200 000,00 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Nyomdagép, Heidelberg Speedmaster SM 52</title>
+      <description>4 színes ofszet nyomdagép, 2013-as gyártás, üzemképes.</description>
+      <min_price>15 500 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

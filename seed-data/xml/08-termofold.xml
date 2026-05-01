@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0412-Vh-0645/2025</case_no>
+  <debtor>Varga Mihály</debtor>
+  <starts_at>2026-06-24T10:30:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Szántó, Békés megye, Szarvas külterület, 0189/7 hrsz.</title>
+      <description>12,8 ha szántóföld, jelenleg bérbe adva 2027-ig, öntözött terület.</description>
+      <min_price>38 400 000,00 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

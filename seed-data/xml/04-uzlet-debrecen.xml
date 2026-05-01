@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0103-Vh-0541/2025</case_no>
+  <debtor>Horváth István</debtor>
+  <starts_at>2026-05-28T14:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Üzlethelyiség, Debrecen, Piac u. 28. földszint</title>
+      <description>38 m² utcafronti üzlet, kirakattal, vizesblokkal. Jelenleg bérbe adva 2027.01.31-ig.</description>
+      <min_price>18 750 000,00 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

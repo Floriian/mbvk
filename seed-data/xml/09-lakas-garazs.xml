@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0105-Vh-4412/2025</case_no>
+  <debtor>Farkas Krisztina</debtor>
+  <starts_at>2026-05-30T15:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Lakás, Budapest II. ker., Margit krt. 88. IV/3.</title>
+      <description>78 m², 3 szoba, klimatizált, felújított. Liftes ház, parkra néző.</description>
+      <min_price>68 900 000,00 Ft</min_price>
+    </asset>
+    <asset category="ingatlan">
+      <title>Teremgarázs hely ugyanebben a házban</title>
+      <description>Fedett teremgarázs, 1 db parkolóhely.</description>
+      <min_price>4 500 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

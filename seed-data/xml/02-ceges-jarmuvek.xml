@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0104-Vh-0892/2024</case_no>
+  <debtor>Szabó és Társa Kft.</debtor>
+  <starts_at>2026-05-22T09:30:00+02:00</starts_at>
+  <assets>
+    <asset category="gépjármű">
+      <title>Volvo V60 D4 Momentum (2018)</title>
+      <description>Dízel, automata váltó, 125 000 km, szervizkönyv megvan, érvényes műszaki 2027.03-ig.</description>
+      <min_price>4 200 000 Ft</min_price>
+    </asset>
+    <asset category="gépjármű">
+      <title>Ford Transit 2.2 TDCi (2016)</title>
+      <description>Dobozos kivitel, 180 000 km, 3 személyes, vontatóhorog.</description>
+      <min_price>2 850 000,00 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Hyster H3.0FT targonca</title>
+      <description>3000 kg teherbírás, 2014, dízel, 4200 üzemóra.</description>
+      <min_price>1 950 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

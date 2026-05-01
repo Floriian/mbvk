@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0308-Vh-1102/2024</case_no>
+  <debtor>Tóth Zsolt</debtor>
+  <starts_at>2026-05-19T13:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Családi ház, Veszprém, Almádi út 67.</title>
+      <description>95 m², 3 szoba, 600 m² telek, gáz-, villany- és vízbekötés. Felújítandó.</description>
+      <min_price>14 200 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

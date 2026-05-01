@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Figyelem: az upstream szolgáltató ebben a fájlban Non-Breaking Space
+  (U+00A0) karaktereket használ az árszám tagolására, nem sima space-t.
+  Ez a gyakoribb eset a production forgalomban. A parsernek ezt kezelnie
+  kell - lásd main.go normalizeAmount().
+-->
+<auction>
+  <case_no>0115-Vh-2071/2025</case_no>
+  <debtor>Nagy Ferencné</debtor>
+  <starts_at>2026-06-03T11:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Társasházi lakás, Szeged, Kálvária sgt. 12. II/4.</title>
+      <description>62 m², 2 szoba, erkéllyel, téglaépítésű. Tehermentes.</description>
+      <min_price>22 800 000,50 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hibás minta: nem RFC3339 dátum. Elvárt válasz: 400. -->
+<auction>
+  <case_no>0101-Vh-9998/2025</case_no>
+  <debtor>Teszt Elek</debtor>
+  <starts_at>2026.05.15 10:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Valami</title>
+      <min_price>1 000 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

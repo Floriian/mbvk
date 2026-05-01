@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0201-Vh-0078/2025</case_no>
+  <debtor>Dunai Fémfeldolgozó Zrt. „f.a."</debtor>
+  <starts_at>2026-07-08T09:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingatlan">
+      <title>Ipari csarnok és telek, Győr, Ipar út 15.</title>
+      <description>2400 m² csarnok + 1200 m² irodaépület, 8600 m² telken. Iparvágány kapcsolat, 20 kV-os transzformátor állomás.</description>
+      <min_price>485 000 000,00 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Trumpf TruPunch 3000 CNC lyukasztógép</title>
+      <description>2017-es gyártás, 180 t kapacitás, automata szerszámcserélővel.</description>
+      <min_price>42 500 000,00 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Amada HFE 1703 élhajlító prés</title>
+      <description>170 t, 3 m munkahossz, 2015-ös gyártás.</description>
+      <min_price>28 900 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>

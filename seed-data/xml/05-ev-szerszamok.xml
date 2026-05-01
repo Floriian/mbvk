@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auction>
+  <case_no>0112-Vh-3156/2025</case_no>
+  <debtor>Mészáros Tamás e.v.</debtor>
+  <starts_at>2026-06-10T10:00:00+02:00</starts_at>
+  <assets>
+    <asset category="ingóság">
+      <title>Bosch GWS 17-125 sarokcsiszoló</title>
+      <description>1700W, használt, jó állapot.</description>
+      <min_price>18 500 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Makita HR2470 fúrókalapács</title>
+      <description>SDS-plus, 780W.</description>
+      <min_price>22 000 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>DeWalt DCD796 akkus fúró</title>
+      <description>18V, 2 db 4Ah akkuval, táskában.</description>
+      <min_price>45 900 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Hegesztő trafó, Telwin Force 165</title>
+      <description>Bevontelektródás, 150A.</description>
+      <min_price>32 500 Ft</min_price>
+    </asset>
+    <asset category="ingóság">
+      <title>Kompresszor, Scheppach HC54</title>
+      <description>24 literes, olajkenésű.</description>
+      <min_price>28 000 Ft</min_price>
+    </asset>
+  </assets>
+</auction>
