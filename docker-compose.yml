@@ -58,27 +58,28 @@ services:
     entrypoint: ["sh", "/seed-data/load.sh"]
     restart: "no"
 
-  # ----------------------------------------------------------------
-  # A ide jönnek a saját serviceid:
-  #
-  #   symfony:
-  #     build: ./symfony
-  #     environment:
-  #       DATABASE_URL: postgres://app:app@postgres:5432/auctions?sslmode=disable
-  #       REDIS_DSN: redis://redis:6379
-  #     ports: ["8090:8080"]   # vagy ahova teszi a built-in szervert / nginx-et
-  #     depends_on: { postgres: ..., redis: ... }
-  #
-  #   frontend:
-  #     build: ./frontend
-  #     ports: ["3000:3000"]
-  #     environment:
-  #       API_BASE: http://localhost:8090
-  #
-  # FIGYELEM: a Symfony az 'auctions' DB-t használja, NEM az
-  # 'auctions_legacy'-t! Az 'auctions_legacy' csak a Go-é, parity
-  # tesztre. Az 'auctions' üres sémával vár.
-  # ----------------------------------------------------------------
+  symfony:
+    build: ./symfony
+    command: >
+      sh -c "bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+             && apache2-foreground"
+    environment:
+      APP_ENV: prod
+      APP_SECRET: changeme
+      DATABASE_URL: postgresql://app:app@postgres:5432/auctions?serverVersion=16&charset=utf8
+      CORS_ALLOW_ORIGIN: '^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
+    ports:
+      - "8090:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - symfony
 
 volumes:
   pgdata:
