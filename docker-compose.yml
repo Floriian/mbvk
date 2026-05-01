@@ -67,11 +67,14 @@ services:
       APP_ENV: prod
       APP_SECRET: changeme
       DATABASE_URL: postgresql://app:app@postgres:5432/auctions?serverVersion=16&charset=utf8
+      REDIS_DSN: redis://redis:6379
       CORS_ALLOW_ORIGIN: '^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
     ports:
       - "8090:80"
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
   frontend:

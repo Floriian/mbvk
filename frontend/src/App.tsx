@@ -1,20 +1,41 @@
-import { Button } from "@/components/ui/button"
+import { Navigate, Route, Routes } from "react-router-dom"
+import { AuthProvider, useAuthContext } from "@/features/auth/auth-context"
+import { LoginPage } from "./features/auth/components/LoginPage"
+
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const { token } = useAuthContext()
+  return token ? <>{children}</> : <Navigate to="/login" replace />
+}
+
+function AppRoutes() {
+  const { token } = useAuthContext()
+
+  return (
+    <Routes>
+      <Route path="/auth">
+        <Route path="login" element={<LoginPage />} />
+      </Route>
+      <Route
+        path="/auctions"
+        element={
+          <RequireAuth>
+            <div>Auctions (coming soon)</div>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/"
+        element={<Navigate to={token ? "/auctions" : "/login"} replace />}
+      />
+    </Routes>
+  )
+}
 
 export function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   )
 }
 
