@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/select"
 import type { AuctionFilters, AuctionStatus } from "../auction-types"
 import { Input } from "@/components/ui/input"
-import { useAuthContext } from "@/features/auth/use-auth-context"
 import { Button } from "@/components/ui/button"
 
 interface Props {
@@ -32,9 +31,9 @@ export function AuctionSearchFilters({
         }
       />
       <Select
-        value={filters.status}
+        value={filters.status ?? "all"}
         onValueChange={(value) =>
-          onFiltersChange({ ...filters, status: value as AuctionStatus })
+          onFiltersChange({ ...filters, status: (value === "all" ? undefined : value) as AuctionStatus | undefined })
         }
       >
         <SelectTrigger>
@@ -42,7 +41,7 @@ export function AuctionSearchFilters({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value={undefined}>Összes</SelectItem>
+            <SelectItem value="all">Összes</SelectItem>
             <SelectItem value="active">Aktív</SelectItem>
             <SelectItem value="pending">Függőben</SelectItem>
             <SelectItem value="closed">Lezárva</SelectItem>
