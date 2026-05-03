@@ -8,7 +8,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@auth/*": ["./src/features/auth/*"]
+      "@auth/*": ["./src/features/auth/*"],
+      "@auctions/*": ["./src/features/auctions/*"],
+      "@assets/*": ["./src/features/assets/*"]
     }
   }
 }
