@@ -34,13 +34,13 @@ final class MockLdapUserProvider implements LdapUserProviderInterface
         ];
     }
 
-    public function authenticate(string $username, string $password): TokenUser
+    public function authenticate(string $usernamme, string $password): TokenUser
     {
-        $entry = $this->directory[$username] ?? null;
+        $entry = $this->directory[$usernamme] ?? null;
         if ($entry === null || !hash_equals($entry['pw_hash'], hash('sha256', $password))) {
             throw new \RuntimeException('invalid credentials');
         }
 
-        return new TokenUser($username, $entry['display_name'], $entry['email'], $entry['roles']);
+        return new TokenUser($usernamme, $entry['display_name'], $entry['email'], $entry['roles']);
     }
 }

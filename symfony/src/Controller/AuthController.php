@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Dto\Request\LoginRequestDto;
 use App\Security\TokenUser;
 use App\Service\LdapUserProviderInterface;
 use App\Service\RedisClient;
@@ -9,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -22,28 +24,20 @@ final class AuthController extends AbstractController
     ) {}
 
     #[Route('/login', methods: ['POST'])]
-    public function login(Request $request): JsonResponse
+    public function login(#[MapRequestPayload] LoginRequestDto $dto, Request $request): JsonResponse
     {
-        $body     = json_decode($request->getContent(), true) ?? [];
-        $username = trim($body['username'] ?? '');
-        $password = $body['password'] ?? '';
-
-        if ($username === '' || $password === '') {
-            return $this->json(['error' => 'username and password required'], Response::HTTP_BAD_REQUEST);
-        }
-
         $ip        = $this->clientIp($request);
         $userAgent = $request->headers->get('User-Agent', '');
 
         try {
-            $user = $this->ldap->authenticate($username, $password);
+            $user = $this->ldap->authenticate(trim($dto->username), $dto->password);
         } catch (\RuntimeException $e) {
-            $this->redis->logLoginEvent($username, false, $ip, $userAgent, $e->getMessage());
+            $this->redis->logLoginEvent($dto->username, false, $ip, $userAgent, $e->getMessage());
 
             return $this->json(['error' => 'invalid credentials'], Response::HTTP_UNAUTHORIZED);
         }
 
-        $this->redis->logLoginEvent($username, true, $ip, $userAgent);
+        $this->redis->logLoginEvent($user->getUserIdentifier(), true, $ip, $userAgent);
 
         $token     = $this->redis->generateToken();
         $expiresAt = new \DateTimeImmutable('+8 hours', new \DateTimeZone('UTC'));
