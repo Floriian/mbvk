@@ -5,7 +5,7 @@ function handleUnauthorized() {
   console.log("Unauthorized - clearing session and redirecting to login")
   sessionStorage.removeItem(AUTH_CONSTANTS.TOKEN_KEY)
   sessionStorage.removeItem(AUTH_CONSTANTS.USER_KEY)
-  window.location.href = "/auth/login"
+  window.location.href = "/login"
 }
 
 export const useApi = (requestConf?: AxiosRequestConfig) => {
@@ -31,6 +31,6 @@ export const useApi = (requestConf?: AxiosRequestConfig) => {
     post: api.post.bind(api),
     put: api.put.bind(api),
     patch: api.patch.bind(api),
-    delete: api.delete.bind(api),
+    del: api.delete.bind(api),
   }
 }
