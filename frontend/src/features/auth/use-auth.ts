@@ -1,6 +1,6 @@
 import { useApi } from "@/lib/api"
-import { useAuthContext } from "./auth-context"
 import type { SignInFormValues } from "./auth-schema"
+import { useAuthContext } from "./use-auth-context"
 
 export const useAuth = () => {
   const { post } = useApi()
