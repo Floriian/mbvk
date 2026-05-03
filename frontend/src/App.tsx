@@ -2,10 +2,14 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { AuthProvider } from "@/features/auth/auth-context"
 import { LoginPage } from "./features/auth/components/LoginPage"
 import { useAuthContext } from "./features/auth/use-auth-context"
+import { Layout } from "./components/layout/Layout"
+import { AuctionsPage } from "./features/auctions/components/AuctionsPage"
+import { AuctionDetailsPage } from "./features/auctions/components/AuctionDetailsPage"
+import { RecentLoginsPage } from "./features/admin/components/RecentLoginsPage"
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { token } = useAuthContext()
-  return token ? <>{children}</> : <Navigate to="/auth/login" replace />
+  return token ? <Layout>{children}</Layout> : <Navigate to="/login" replace />
 }
 
 function AppRoutes() {
@@ -13,20 +17,38 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/auth">
-        <Route path="login" element={<LoginPage />} />
+      <Route path="/admin">
+        <Route
+          path="logins"
+          element={
+            <RequireAuth>
+              <RecentLoginsPage />
+            </RequireAuth>
+          }
+        />
+      </Route>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/auctions">
+        <Route
+          index
+          element={
+            <RequireAuth>
+              <AuctionsPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path=":id"
+          element={
+            <RequireAuth>
+              <AuctionDetailsPage />
+            </RequireAuth>
+          }
+        />
       </Route>
       <Route
-        path="/auctions"
-        element={
-          <RequireAuth>
-            <div>Auctions (coming soon)</div>
-          </RequireAuth>
-        }
-      />
-      <Route
         path="/"
-        element={<Navigate to={token ? "/auctions" : "/auth/login"} replace />}
+        element={<Navigate to={token ? "/auctions" : "/login"} replace />}
       />
     </Routes>
   )
