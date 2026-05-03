@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'auctions')]
 class Auction
 {
+
+    public const STATUS_PENDING   = 'pending';
+    public const STATUS_ACTIVE    = 'active';
+    public const STATUS_CLOSED    = 'closed';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::BIGINT)]
@@ -72,5 +77,16 @@ class Auction
     {
         $this->assets->removeElement($asset);
         return $this;
+    }
+
+    public const ALLOWED_TRANSITIONS = [
+        self::STATUS_PENDING   => [self::STATUS_ACTIVE, self::STATUS_CLOSED],
+        self::STATUS_ACTIVE    => [self::STATUS_CLOSED, self::STATUS_PENDING],
+        self::STATUS_CLOSED    => [],
+    ];
+
+    public function canTransitionTo(string $newStatus): bool
+    {
+        return in_array($newStatus, self::ALLOWED_TRANSITIONS[$this->status] ?? [], true);
     }
 }
