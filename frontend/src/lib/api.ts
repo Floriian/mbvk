@@ -2,9 +2,10 @@ import { AUTH_CONSTANTS } from "@/features/auth/auth-constants"
 import axios, { type AxiosRequestConfig, isAxiosError } from "axios"
 
 function handleUnauthorized() {
+  console.log("Unauthorized - clearing session and redirecting to login")
   sessionStorage.removeItem(AUTH_CONSTANTS.TOKEN_KEY)
   sessionStorage.removeItem(AUTH_CONSTANTS.USER_KEY)
-  window.location.href = "/login"
+  window.location.href = "/auth/login"
 }
 
 export const useApi = (requestConf?: AxiosRequestConfig) => {
@@ -19,9 +20,10 @@ export const useApi = (requestConf?: AxiosRequestConfig) => {
   api.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (isAxiosError(error) && error.response?.status === 401) handleUnauthorized()
+      if (isAxiosError(error) && error.response?.status === 401)
+        handleUnauthorized()
       return Promise.reject(error)
-    },
+    }
   )
 
   return {
