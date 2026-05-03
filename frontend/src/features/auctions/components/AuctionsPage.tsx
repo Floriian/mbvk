@@ -6,6 +6,7 @@ import { useAuctions } from "../use-auctions"
 import { AuctionsTable } from "./AuctionsTable"
 import { AuctionSearchFilters } from "./AuctionSearchFilter"
 import { Paginate } from "@/components/ui/pagination"
+import { toast } from "sonner"
 
 export function AuctionsPage() {
   const [auctions, setAuctions] = useState<PaginatedResponse<Auction> | null>(
@@ -32,9 +33,8 @@ export function AuctionsPage() {
         const res = await importAuction(formData)
         console.log(res)
         navigate(`/auctions/${res.data.id}`)
-      } catch (e) {
-        console.log(e.response)
-        alert("Nem sikerült az importálás. Kérem próbálja újra.")
+      } catch {
+        toast.error("Nem sikerült importálni az aukciót. Kérlek próbáld újra.")
       }
     }
   }

@@ -7,7 +7,6 @@ import { AssetsTable } from "@/features/assets/components/AssetsTable"
 import { Button } from "@/components/ui/button"
 import { useAuthContext } from "@/features/auth/use-auth-context"
 import { ConfirmDialog } from "@/components/ui/confirm-dialog"
-import { AuctionStatusBadge } from "./AuctionStatusBadge"
 import {
   Select,
   SelectContent,
