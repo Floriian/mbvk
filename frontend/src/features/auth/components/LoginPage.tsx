@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { signInSchema, type SignInFormValues } from "../auth-schema"
-import { useAuth } from "../use-Auth"
+import { useAuth } from "../use-auth"
 
 export function LoginPage() {
   const { signIn } = useAuth()
