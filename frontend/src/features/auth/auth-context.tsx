@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { useState } from "react"
 import { AUTH_CONSTANTS } from "./auth-constants"
+import { AuthContext } from "./use-auth-context"
 
 interface UserInfo {
   username: string
@@ -7,16 +8,6 @@ interface UserInfo {
   email: string
   roles: string[]
 }
-
-interface AuthContextType {
-  user: UserInfo | null
-  token: string | null
-  login: (token: string, user: UserInfo) => void
-  logout: () => void
-  isAdmin: boolean
-}
-
-const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(() =>
@@ -54,10 +45,4 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       {children}
     </AuthContext.Provider>
   )
-}
-
-export function useAuthContext() {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error("useAuthContext must be used inside AuthProvider")
-  return ctx
 }

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { signInSchema, type SignInFormValues } from "../auth-schema"
-import { useAuth } from "../useAuth"
+import { useAuth } from "../use-Auth"
 
 export function LoginPage() {
   const { signIn } = useAuth()
@@ -55,8 +55,6 @@ export function LoginPage() {
               id="username"
               {...register("username")}
               className="w-full rounded border px-3 py-2 text-sm focus:ring-2 focus:ring-ring focus:outline-none"
-              placeholder="kovacs.janos"
-              autoComplete="username"
             />
             {errors.username && (
               <p className="text-xs text-destructive">

@@ -1,10 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { AuthProvider, useAuthContext } from "@/features/auth/auth-context"
+import { AuthProvider } from "@/features/auth/auth-context"
 import { LoginPage } from "./features/auth/components/LoginPage"
+import { useAuthContext } from "./features/auth/use-auth-context"
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { token } = useAuthContext()
-  return token ? <>{children}</> : <Navigate to="/login" replace />
+  return token ? <>{children}</> : <Navigate to="/auth/login" replace />
 }
 
 function AppRoutes() {
@@ -25,7 +26,7 @@ function AppRoutes() {
       />
       <Route
         path="/"
-        element={<Navigate to={token ? "/auctions" : "/login"} replace />}
+        element={<Navigate to={token ? "/auctions" : "/auth/login"} replace />}
       />
     </Routes>
   )
