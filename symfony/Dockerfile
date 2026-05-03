@@ -1,4 +1,4 @@
-FROM php:8.2-apache AS base
+FROM php:8.4-apache AS base
 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
@@ -19,6 +19,12 @@ RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-avail
 WORKDIR /app
 
 FROM base AS builder
+
+ENV APP_ENV=prod
+
+RUN apt-get update && apt-get install -y git unzip libzip-dev \
+    && docker-php-ext-install zip \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY composer.json composer.lock symfony.lock ./
 RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist
