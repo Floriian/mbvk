@@ -31,10 +31,3 @@ A Go kódot néztem fejleszéts közben, és ami feltűnt, az a pagination metad
 - docker compose up után a frontend nem tudja feloldalni a backend címét.
 
 Maximum 1 oldal, amiben többek közt kitérhetsz, az általad fontosnak tartott dolgok mellett:
-
-Symfony szerkezet és technikai döntések indoklása
-A Go kódból mit emeltél át, mit vettél észre, amit nem írt le explicit a feladat
-Audit log megoldás indoklása
-Frontend stack és UI library választás
-Mit hagytál ki és miért
-AI használta: hol kellett kézzel javítanod vagy elvetned a generált kódot
